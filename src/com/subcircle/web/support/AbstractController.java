@@ -135,5 +135,27 @@ public abstract class AbstractController implements ControllerInterface
 	 * 						根据需要在此写方法
 	 *********************************************************************/
 
+	protected final void queryAndShowMarketData()throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryByCondition();
+		List<Map<String, String>> Carouselrows = this.services.queryExtral();
+		if (Carouselrows.size() > 0) 
+		{
+			this.saveAttribute("hotItems",Carouselrows);
+		}
+		else 
+		{
+			this.saveAttribute("hotmsg", "无热销商品");
+		}
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "无商品信息！");
+		}
+	}
+	
 	
 }
