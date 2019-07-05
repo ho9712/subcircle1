@@ -20,7 +20,7 @@ public class EncodeFilter extends HttpServlet implements Filter
 		/**
 		 * ÉèÖÃ±àÂë¸ñÊ½
 		 */
-		request.setCharacterEncoding("GBK");
+		request.setCharacterEncoding("UTF-8");
 		chain.doFilter(request, response);
 	}
 
