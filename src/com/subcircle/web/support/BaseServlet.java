@@ -49,7 +49,16 @@ public class BaseServlet extends HttpServlet
 			request.setAttribute("msg", "Ã· æ£∫Õ¯¬Áπ ’œ£°");
 			e.printStackTrace();
 		}
-		request.getRequestDispatcher("/"+toPath+".jsp").forward(request, response);
+		//±‹√‚NPE
+		if(toPath != null && toPath.equals(""))
+		{
+			//System.out.println(request.getHeader("referer"));
+			response.sendRedirect(request.getHeader("Referer"));
+		}
+		else
+		{
+			request.getRequestDispatcher("/"+toPath+".jsp").forward(request, response);
+		}
 	}
 
 	/**

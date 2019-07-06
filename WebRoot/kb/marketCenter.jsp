@@ -3,76 +3,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-
-<title>Market</title>
+<title>周边商城</title>
 <link href="css/bootstrap.css" rel="stylesheet">
-<style type="text/css">
-#bom {
-	position: fixed;
-	left: 0px;
-	bottom: 0;
-	_position: absolute;
-	_top: expression(document.documentElement.clientHeight + 
-		document.documentElement.scrollTop - this.offsetHeight);
-}
-
-#top {
-	position: fixed;
-	top: 15%;
-	width: 15%;
-	_position: absolute;
-	_bottom: expression(document.documentElement.clientHeight + 
-		document.documentElement.scrollTop - this.offsetHeight);
-}
-</style>
+<jsp:include page="index.jsp" flush="true" /><!-- 引入导航栏 -->
 </head>
-
-
-
 <body>
-${rows.get(1) } 
-<%-- ${hotItems } --%>
+	<%-- ${rows.get(1) } --%>
+	<%-- ${hotItems } --%>
 	<div class="container-fluid">
 		<!-- 容器 -->
-
 		<div class="row-fluid" align="center">
-			<!--商城导航栏及搜索栏轮播图  (第一列)-->
-
-			<div class="span2">
-				<div id="top">
-					<ul class="nav nav-list">
-						<li class="active"><a href="#">站点首页</a></li>
-						<hr>
-						<li><a href="#">迷你论坛</a></li>
-						<hr>
-						<li><a href="#">周边商城</a></li>
-						<hr>
-						<li><a href="#">个人空间</a></li>
-					</ul>
-				</div>
-				<div id="bom">
-					<img class="img-thumbnail"
-						src="http://uploadv3.anitoys.com/anitoys/images/test/20190530/k867sby0s4eudifq9dv0wg3rl5i22fk9.jpg"
-						width="250" height="250" />
-				</div>
-			</div>
-
-
-			<div class="span10">
-
-				<ul class="nav nav-pills">
-					<li><a href="#">我的购物车</a></li>
-					<li><a href="#">我的订单</a></li>
-					<li class="dropdown"><a href="#" data-toggle="dropdown"
-						class="dropdown-toggle">求购 <strong class="caret"></strong></a>
-						<ul class="dropdown-menu">
-							<li><a href="#">求购信息列表</a></li>
-							<li><a href="#">我的求购列表</a></li>
-							<li><a href="#">我的响应列表</a></li>
-							<li><a href="#">待处理列表</a></li>
-						</ul></li>
-				</ul>
-
+			<div class="span10 offset2">
 				<div>
 					<input class="input-medium search-query" type="text"
 						style="width: 50%; height: 20px;" />
@@ -93,24 +34,30 @@ ${rows.get(1) }
 							<c:choose>
 								<c:when test="${vs.count == 1 }">
 									<div class="item active">
-										<img src="${ins.kkb105 }" style="width: 400px; height: 400px;" />
+										<img onclick="itemInfo(${ins.kkb101 })" src="${ins.kkb105 }"
+											style="width: 400px; height: 400px;" />
 										<div class="carousel-caption">
-											<h4>${ins.kkb102 }</h4>
+											<h4>
+												<a href="#" onclick="itemInfo(${ins.kkb101 })">
+													${ins.kkb102 }</a>
+											</h4>
 											<p>${ins.kkb104 }</p>
 										</div>
 									</div>
 								</c:when>
 								<c:otherwise>
 									<div class="item">
-										<img src="${ins.kkb105 }" style="width: 400px; height: 400px;" />
+										<img onclick="itemInfo(${ins.kkb101 })" src="${ins.kkb105 }"
+											style="width: 400px; height: 400px;" />
 										<div class="carousel-caption">
-											<h4>${ins.kkb102 }</h4>
+											<a href="#" onclick="itemInfo(${ins.kkb101 })">
+												${ins.kkb102 }</a>
 											<p>${ins.kkb104 }</p>
 										</div>
-									</div>	
+									</div>
 								</c:otherwise>
 							</c:choose>
-						</c:forEach>	
+						</c:forEach>
 					</div>
 					<a data-slide="prev" href="#myCarousel"
 						class="left carousel-control">‹</a> <a data-slide="next"
@@ -120,20 +67,26 @@ ${rows.get(1) }
 
 
 				<!-- 商品展示区 -->
-				<c:forEach  begin = "1" step = "1" end = "3" varStatus="i"> 
+				<c:forEach begin="1" step="1" end="3" varStatus="i">
 					<ul class="thumbnails">
-						<c:forEach items="${rows }" var="ins" begin = "${(i.count-1)*4 }" step = "1" end = "${(i.count-1)*4+3 }">
+						<c:forEach items="${rows }" var="ins" begin="${(i.count-1)*4 }"
+							step="1" end="${(i.count-1)*4+3 }">
 							<li class="span3">
 								<div class="thumbnail">
-									<img src="${ins.kkb105 }" width="300" height="300" />
+									<img onclick="itemInfo(${ins.kkb101 })" src="${ins.kkb105 }"
+										width="300" height="300" />
 									<div class="caption">
-										<h4>${ins.kkb102 }</h4>
+										<h4>
+											<a href="#" onclick="itemInfo(${ins.kkb101 })">
+												${ins.kkb102 }</a>
+										</h4>
 										<p>${ins.kkb104 }</p>
 										<label><font color="#ff0000" size="2px"> 售价:</font>${ins.kkb103 }
 										</label>
 										<p>
-											<a class="btn btn-success" href="#">收藏</a> <a
-												class="btn btn-warning" href="#">加入购物车</a> <a
+											<a class="btn btn-success"
+												href="<%=request.getContextPath()%>/kb03CollectItem.html?kkb101=${ins.kkb101 }">
+												收藏 </a> <a class="btn btn-warning" href="#">加入购物车</a> <a
 												class="btn btn-danger" href="#">立即购买</a>
 										</p>
 									</div>
@@ -168,5 +121,17 @@ ${rows.get(1) }
 
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
+
+	<script type="text/javascript">
+
+	//根据商品id查看相应商品详情并为登入用户生成浏览记录
+	function itemInfo(kkb101)
+	{
+		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.html?kkb101=" + kkb101;
+	}
+	
+
+	
+	</script>
 </body>
 </html>

@@ -20,6 +20,7 @@ public abstract class AbstractController implements ControllerInterface
 		this.services=services;
 	}
 	
+		
 	/***********************************************************
 	 * 					为Services传递DTO
 	 ***********************************************************/
@@ -157,5 +158,15 @@ public abstract class AbstractController implements ControllerInterface
 		}
 	}
 	
+	protected final void showMarketItemInfo() throws Exception
+	{
+		Map<String, String> ins = this.services.findById();
+		this.saveAttribute("msg","该商品已下架或禁止访问!");
+		if(ins != null) 
+		{
+			this.saveAttribute("msg","查询成功");
+		}
+		this.saveAttribute("ins", ins);
+	}
 	
 }

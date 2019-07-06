@@ -5,7 +5,7 @@
 <title>Login</title>
 </head>
 <body>
-<form action="queryItems.html" method="post">
+<form action="kb01QueryItems.html" method="post">
 <input type="submit" name = "next">Login</input>
 </form>
 

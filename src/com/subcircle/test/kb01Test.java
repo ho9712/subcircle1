@@ -10,7 +10,7 @@ public class kb01Test
 		Kb01Services services = new Kb01Services();
 		try
 		{
-			System.out.println(services.queryExtral());
+			System.out.println(services.findById());
 		} catch (Exception e) 
 		{
 			e.printStackTrace();
