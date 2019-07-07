@@ -136,6 +136,10 @@ public abstract class AbstractController implements ControllerInterface
 	 * 						根据需要在此写方法
 	 *********************************************************************/
 
+	/**
+	 * 	显示周边商城首页的商品数据信息
+	 * @throws Exception
+	 */
 	protected final void queryAndShowMarketData()throws Exception
 	{
 		List<Map<String, String>> rows=this.services.queryByCondition();
@@ -158,6 +162,10 @@ public abstract class AbstractController implements ControllerInterface
 		}
 	}
 	
+	/**
+	 * 	显示商品详情的数据信息
+	 * @throws Exception
+	 */
 	protected final void showMarketItemInfo() throws Exception
 	{
 		Map<String, String> ins = this.services.findById();
@@ -167,6 +175,24 @@ public abstract class AbstractController implements ControllerInterface
 			this.saveAttribute("msg","查询成功");
 		}
 		this.saveAttribute("ins", ins);
+	}
+
+	/**
+	 * 	根据用户ID显示购物车数据信息
+	 * @throws Exception
+	 */
+	protected final void queryAndShowMyCartData()throws Exception
+	{
+		List<Map<String, String>> rows=this.services.queryByCondition();
+		//System.out.println(rows);
+		if(rows.size()>0)
+		{
+			this.saveAttribute("rows", rows);
+		}
+		else
+		{
+			this.saveAttribute("msg", "购物车空空如也！");
+		}
 	}
 	
 }

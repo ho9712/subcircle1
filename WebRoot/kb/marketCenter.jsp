@@ -83,12 +83,13 @@
 										<p>${ins.kkb104 }</p>
 										<label><font color="#ff0000" size="2px"> 售价:</font>${ins.kkb103 }
 										</label>
-										<p>
-											<a class="btn btn-success"
-												href="<%=request.getContextPath()%>/kb03CollectItem.html?kkb101=${ins.kkb101 }">
-												收藏 </a> <a class="btn btn-warning" href="#">加入购物车</a> <a
-												class="btn btn-danger" href="#">立即购买</a>
-										</p>
+										<div class="btn-group btn-group-sm">
+											<button type="button" class="btn btn-success"
+											  		onclick="onCollect(${ins.kkb101 })">收藏</button>
+											<button type="button" class="btn btn-warning"
+												onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
+											<button type="button" class="btn btn-danger">立即购买</button>
+										</div>
 									</div>
 								</div>
 							</li>
@@ -130,6 +131,23 @@
 		window.location.href = "<%=request.getContextPath()%>/kb01FindItemById.html?kkb101=" + kkb101;
 	}
 	
+	//根据商品id加入用户收藏李彪
+	function onCollect(kkb101)
+	{
+		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.html?"
+					+"kkb101="+kkb101;
+		alert("收藏成功");
+	}
+	
+	//根据商品id以及数量加入用户购物车中
+	function onAddToCart(kkb101)
+	{
+		var kkb402 = 1;
+		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.html?"
+				+"kkb101="+kkb101
+				+"&kkb402="+kkb402;
+		alert("加入购物车成功");
+	}
 
 	
 	</script>

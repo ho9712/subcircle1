@@ -8,7 +8,7 @@
 <jsp:include page="index.jsp" flush="true"/>	<!-- 引入导航栏 -->
 </head>
 <body>
-
+${msg }
 	<div class="container-fluid">
 		<!-- 容器 -->
 		<div class="row-fluid" height="400px">
@@ -56,12 +56,13 @@
 					</tbody>
 				</table>
 				<label> 数量: <input type="number" step="1" min="1" value="1"
-					style="width: 60px;" name="itemCount">
-				</label>
+							style="width: 60px;" id="kkb402">
+				</label>	
 				<div class="btn-group btn-group-sm">
 					<button type="button" class="btn btn-success"
 						onclick="onCollect(${ins.kkb101 })">收藏</button>
-					<button type="button" class="btn btn-warning">加入购物车</button>
+					<button type="button" class="btn btn-warning"
+							onclick="onAddToCart(${ins.kkb101 })">加入购物车</button>
 					<button type="button" class="btn btn-danger">立即购买</button>
 				</div>
 			</div>
@@ -96,10 +97,22 @@
 	<!-- 容器结束 -->
 <script type="text/javascript">
 
-	//根据商品id查看相应商品详情并为登入用户生成浏览记录
+	//根据商品id加入用户收藏列表
 	function onCollect(kkb101)
 	{
-		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.html?kkb101="+kkb101;
+		window.location.href="<%=request.getContextPath()%>/kb03CollectItem.html?"
+					+"kkb101="+kkb101;
+		alert("收藏成功");
+	}
+	
+	//根据商品id以及数量加入用户购物车中
+	function onAddToCart(kkb101)
+	{
+		var kkb402 = document.getElementById('kkb402').value
+		window.location.href="<%=request.getContextPath()%>/kb04AddToMyCart.html?"
+				+"kkb101="+kkb101
+				+"&kkb402="+kkb402;
+		alert("加入购物车成功");
 	}
 
 </script>

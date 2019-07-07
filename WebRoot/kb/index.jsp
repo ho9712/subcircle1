@@ -55,7 +55,7 @@
 		<div class="span10">
 			<!-- 商城模块导航栏 -->
 			<ul class="nav nav-pills">
-				<li><a href="#">我的购物车</a></li>
+				<li><a href="#" onclick="ToMyCart()">我的购物车</a></li>
 				<li><a href="#">我的订单</a></li>
 				<li class="dropdown"><a href="#" data-toggle="dropdown"
 					class="dropdown-toggle">求购 <strong class="caret"></strong></a>
@@ -70,5 +70,13 @@
 		<!-- 商城模块导航栏 结束-->
 	</div>
 	<!-- 导航栏结束 -->
+<script type="text/javascript">
+
+	function ToMyCart() 
+	{
+		window.location.href="<%=request.getContextPath()%>/Kb04MyCartCenter.html";
+	}
+	
+</script>
 
 </body>
